@@ -5,65 +5,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDo</title>
-    <style>
-        body {
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+    <div class="area">
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <main id="app">
+            <h2>{{title}}</h2>
+            <form @submit.prevent="addTodo" autocomplete="off">
+                <input v-model="newTodo" placeholder="Add a new task" type="text" name="newTodo" id="newTodo">
+                <button class="add-bttn" type="submit" name="button">Add</button>
+            </form>
+            <ul class="todo-items">
+                <li class="todo-item" v-for="item in todos">
+                    <input class="checkbox" type="checkbox" v-model="item.done">
+                    <span :class="{ done: item.done }">{{item.title}}</span>
+                    <input class="delete-bttn" @click="deleteItem" type="submit" value="Delete">
+                </li>
+            </ul>
+        </main>
+    </div>
+
     <!-- development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
-    <!--<h1>To Do List</h1>
-
-    <div id="app">
-        <input v-model="newItem">
-        <button v-on:click="addItem">Add Item</button>
-        <ul>
-            <li v-for="item in todos">{{ item }}</li>
-        </ul>
-    </div>
-
-    <script>
-        var app = new Vue({
-            el: "#app",
-            data: {
-                todos: ["Learn VueJS"]
-            },
-            methods: {
-                addItem(e) {
-                    this.todos.push(this.newItem)
-                    e.preventDefault()
-                }
-            }
-        })
-    </script> -->
-
-    <div id="app">
-        <input id="input" type="text" v-model='newItem'>
-        <button v-on:click="addItem">Add item</button>
-        <ul>
-            <li v-for="item in items">{{ item }}</li>
-        </ul>
-    </div>
-
-    <script>
-        var app = new Vue({
-            el: "#app",
-            data: {
-                items: [],
-                newItem: ""
-            },
-            methods: {
-                addItem() {
-                    this.items.push(this.newItem)
-                    this.newItem = '';
-                }
-            }
-        })
-    </script>
+    <script src="app.js"></script>
 </body>
 
 </html>
